@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6554c0">
+<title>جدول کلمات کودکانه</title>
+<style>
+:root{--purple:#6554c0;--ink:#27324a;--soft:#f3f1ff;--green:#249b70;--yellow:#ffd45c}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f2f7ff,#fff5e9);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
+main{max-width:850px;margin:0 auto;padding:18px}
+header{text-align:center;padding:14px 10px 18px}h1{font-size:clamp(25px,5vw,38px);color:var(--purple);margin:8px 0}header p{margin:8px 0;color:#657087}
+.panel{background:#fff;border-radius:22px;padding:18px;box-shadow:0 8px 28px #34446a16;margin:12px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.pill{background:#fff5d9;border-radius:30px;padding:9px 15px;font-weight:bold;color:#916500}
+.progress{height:12px;background:#eeeafa;border-radius:20px;overflow:hidden;margin:14px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#7b68ee,#36c69a);transition:.3s}
+h2{font-size:20px;margin:4px 0 14px}
+.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;max-width:460px;margin:15px auto}
+.cell{aspect-ratio:1;border:2px solid #d9d3f7;border-radius:10px;background:#f8f7ff;display:flex;align-items:center;justify-content:center;font-size:clamp(19px,5vw,29px);font-weight:bold;color:#5144a2}
+.cell.empty{background:transparent;border:0}
+.cell.filled{background:#e9f8f1;border-color:#a8e2c8;color:#187e59}
+.clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.clue{border:2px solid #eeeafa;border-radius:16px;padding:12px;background:#fff;display:flex;gap:12px;align-items:center}
+.pic{font-size:38px;width:55px;text-align:center;flex-shrink:0}
+.clue small{display:block;color:#737d91;margin:4px 0 8px}
+.clue input{width:100%;padding:10px;border:2px solid #ddd8f5;border-radius:10px;font-size:18px;font-family:inherit;text-align:center;outline:none}
+.clue input:focus{border-color:var(--purple)}
+.clue input:disabled{background:#e9f8f1;color:#187e59;border-color:#a8e2c8;font-weight:bold}
+button{font-family:inherit;border:0;border-radius:13px;padding:12px 18px;font-size:16px;font-weight:bold;cursor:pointer}
+.primary{background:var(--purple);color:white}.secondary{background:#f0edff;color:var(--purple)}
+.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+#message{text-align:center;min-height:30px;font-weight:bold;color:var(--green);margin:12px 0}
+footer{text-align:center;color:#7b8497;font-size:12px;padding:16px}
+@media(max-width:480px){main{padding:10px}.panel{padding:13px}.board{gap:4px}.cell{border-radius:7px}}
+</style>
+</head>
+<body>
+<main>
+<header><div style="font-size:45px">🧩 🌈 ⭐</div><h1>جدول کلمات شیرین</h1><p>تصویرها را ببین، کلمه‌ها را بنویس و ستاره بگیر!</p></header>
+<section class="panel">
+ <div class="top"><strong>مرحله ۱: کلمه‌های آشنا</strong><span class="pill" id="score">⭐ ۰ از ۵</span></div>
+ <div class="progress"><div class="bar" id="bar"></div></div>
+ <h2>🖼️ اسم هر تصویر را در کادر بنویس:</h2>
+ <div class="clues" id="clues"></div>
+ <div id="message" aria-live="polite">با کلمه‌ی اول شروع کن. تو می‌توانی! 😊</div>
+ <div class="actions"><button class="primary" id="check">بررسی جواب‌ها</button><button class="secondary" id="hint">یک راهنمایی بده 💡</button><button class="secondary" id="reset">شروع دوباره 🔄</button></div>
+</section>
+<section class="panel">
+ <h2>🔤 خانه‌های کلمه‌ها</h2>
+ <p style="text-align:center;color:#737d91;font-size:14px">با درست شدن هر کلمه، خانه‌های آن رنگی می‌شوند.</p>
+ <div class="board" id="board"></div>
+</section>
+<footer>این بازی برای تمرین خواندن و نوشتن کودکان کلاس اول طراحی شده است.</footer>
+</main>
+<script>
+(()=>{
+const data=[
+ {emoji:"🐱",clue:"این حیوان میو میو می‌کند.",answer:"گربه",hint:"با «گ» شروع می‌شود."},
+ {emoji:"🍎",clue:"یک میوه‌ی قرمز یا سبز.",answer:"سیب",hint:"سه حرف دارد و با «س» شروع می‌شود."},
+ {emoji:"🌙",clue:"شب‌ها در آسمان دیده می‌شود.",answer:"ماه",hint:"با «م» شروع می‌شود."},
+ {emoji:"🐟",clue:"در آب زندگی می‌کند.",answer:"ماهی",hint:"با «م» شروع می‌شود و چهار حرف دارد."},
+ {emoji:"🏠",clue:"جایی که در آن زندگی می‌کنیم.",answer:"خانه",hint:"با «خ» شروع می‌شود."}
+];
+const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+const clean=s=>s.trim().replace(/ي/g,"ی").replace(/ك/g,"ک").replace(/\u200c/g,"").replace(/\s/g,"");
+let solved=new Set(),hintIndex=0;
+const clues=document.getElementById('clues'),board=document.getElementById('board');
+function render(){
+ clues.innerHTML='';
+ data.forEach((w,i)=>{
+  const el=document.createElement('div');el.className='clue';
+  el.innerHTML=`<div class="pic">${w.emoji}</div><div style="flex:1;min-width:0"><strong>کلمه ${fa(i+1)}</strong><small>${w.clue}</small><input id="a${i}" aria-label="پاسخ کلمه ${i+1}" placeholder="اینجا بنویس..." autocomplete="off" ${solved.has(i)?'disabled':''} /></div>`;
+  if(solved.has(i))el.querySelector('input').value=w.answer;
+  clues.appendChild(el);
+ });
+ board.innerHTML='';
+ data.forEach((w,i)=>{
+  [...w.answer].forEach((ch,j)=>{
+   const c=document.createElement('div');c.className='cell'+(solved.has(i)?' filled':'');c.textContent=solved.has(i)?ch:'؟';board.appendChild(c);
+  });
+ });
+ document.getElementById('score').textContent=`⭐ ${fa(solved.size)} از ۵`;
+ document.getElementById('bar').style.width=(solved.size/5*100)+'%';
+}
+function check(){
+ let newly=0;
+ data.forEach((w,i)=>{
+  const input=document.getElementById('a'+i);
+  if(input && clean(input.value)===w.answer && !solved.has(i)){solved.add(i);newly++;}
+ });
+ render();
+ const msg=document.getElementById('message');
+ if(solved.size===data.length)msg.textContent='آفرین قهرمان! همه‌ی کلمه‌ها را پیدا کردی! 🏆🎉';
+ else if(newly)msg.textContent=`آفرین! ${fa(newly)} جواب درست پیدا کردی. ادامه بده! ⭐`;
+ else msg.textContent='هنوز درست نشده؛ دوباره تلاش کن. تو می‌توانی! 💪';
+}
+document.getElementById('check').onclick=check;
+document.getElementById('hint').onclick=()=>{
+ const i=data.findIndex((w,i)=>!solved.has(i));
+ if(i<0){document.getElementById('message').textContent='همه‌ی کلمه‌ها حل شده‌اند! آفرین!';return;}
+ document.getElementById('message').textContent='💡 راهنمایی: '+data[i].hint;
+ const input=document.getElementById('a'+i);if(input)input.focus();
+};
+document.getElementById('reset').onclick=()=>{solved.clear();render();document.getElementById('message').textContent='بازی از نو شروع شد. موفق باشی! 😊';};
+render();
+})();
+</script>
+</body></html>
