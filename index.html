@@ -1,108 +1,32 @@
 <!doctype html>
-<html lang="fa" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#6554c0">
-<title>جدول کلمات کودکانه</title>
+<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#6254c8"><title>ماجراجویی جدول کلمات</title>
 <style>
-:root{--purple:#6554c0;--ink:#27324a;--soft:#f3f1ff;--green:#249b70;--yellow:#ffd45c}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f2f7ff,#fff5e9);font-family:Tahoma,Arial,sans-serif;color:var(--ink);min-height:100vh}
-main{max-width:850px;margin:0 auto;padding:18px}
-header{text-align:center;padding:14px 10px 18px}h1{font-size:clamp(25px,5vw,38px);color:var(--purple);margin:8px 0}header p{margin:8px 0;color:#657087}
-.panel{background:#fff;border-radius:22px;padding:18px;box-shadow:0 8px 28px #34446a16;margin:12px 0}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.pill{background:#fff5d9;border-radius:30px;padding:9px 15px;font-weight:bold;color:#916500}
-.progress{height:12px;background:#eeeafa;border-radius:20px;overflow:hidden;margin:14px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#7b68ee,#36c69a);transition:.3s}
-h2{font-size:20px;margin:4px 0 14px}
-.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;max-width:460px;margin:15px auto}
-.cell{aspect-ratio:1;border:2px solid #d9d3f7;border-radius:10px;background:#f8f7ff;display:flex;align-items:center;justify-content:center;font-size:clamp(19px,5vw,29px);font-weight:bold;color:#5144a2}
-.cell.empty{background:transparent;border:0}
-.cell.filled{background:#e9f8f1;border-color:#a8e2c8;color:#187e59}
-.clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.clue{border:2px solid #eeeafa;border-radius:16px;padding:12px;background:#fff;display:flex;gap:12px;align-items:center}
-.pic{font-size:38px;width:55px;text-align:center;flex-shrink:0}
-.clue small{display:block;color:#737d91;margin:4px 0 8px}
-.clue input{width:100%;padding:10px;border:2px solid #ddd8f5;border-radius:10px;font-size:18px;font-family:inherit;text-align:center;outline:none}
-.clue input:focus{border-color:var(--purple)}
-.clue input:disabled{background:#e9f8f1;color:#187e59;border-color:#a8e2c8;font-weight:bold}
-button{font-family:inherit;border:0;border-radius:13px;padding:12px 18px;font-size:16px;font-weight:bold;cursor:pointer}
-.primary{background:var(--purple);color:white}.secondary{background:#f0edff;color:var(--purple)}
-.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-#message{text-align:center;min-height:30px;font-weight:bold;color:var(--green);margin:12px 0}
-footer{text-align:center;color:#7b8497;font-size:12px;padding:16px}
-@media(max-width:480px){main{padding:10px}.panel{padding:13px}.board{gap:4px}.cell{border-radius:7px}}
-</style>
-</head>
-<body>
-<main>
-<header><div style="font-size:45px">🧩 🌈 ⭐</div><h1>جدول کلمات شیرین</h1><p>تصویرها را ببین، کلمه‌ها را بنویس و ستاره بگیر!</p></header>
-<section class="panel">
- <div class="top"><strong>مرحله ۱: کلمه‌های آشنا</strong><span class="pill" id="score">⭐ ۰ از ۵</span></div>
- <div class="progress"><div class="bar" id="bar"></div></div>
- <h2>🖼️ اسم هر تصویر را در کادر بنویس:</h2>
- <div class="clues" id="clues"></div>
- <div id="message" aria-live="polite">با کلمه‌ی اول شروع کن. تو می‌توانی! 😊</div>
- <div class="actions"><button class="primary" id="check">بررسی جواب‌ها</button><button class="secondary" id="hint">یک راهنمایی بده 💡</button><button class="secondary" id="reset">شروع دوباره 🔄</button></div>
-</section>
-<section class="panel">
- <h2>🔤 خانه‌های کلمه‌ها</h2>
- <p style="text-align:center;color:#737d91;font-size:14px">با درست شدن هر کلمه، خانه‌های آن رنگی می‌شوند.</p>
- <div class="board" id="board"></div>
-</section>
-<footer>این بازی برای تمرین خواندن و نوشتن کودکان کلاس اول طراحی شده است.</footer>
-</main>
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f4f5ff,#fff2e9);font-family:Tahoma,Arial;color:#28324b}main{max-width:1000px;margin:auto;padding:14px}.hero{text-align:center;padding:12px}.hero .emoji{font-size:55px}h1{color:#6254c8;margin:5px;font-size:clamp(25px,5vw,38px)}.panel{background:#fff;border-radius:22px;padding:17px;margin:12px 0;box-shadow:0 8px 25px #26345a10}.flex{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.stat{padding:8px 13px;border-radius:24px;background:#fff3d3;color:#8b6500;font-weight:bold}.stat.p{background:#efedff;color:#6254c8}.stat.g{background:#e7fbf1;color:#18835d}.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}.level{padding:12px 5px;border-radius:15px;background:#f0eeff;color:#6254c8;border:2px solid #e1dcff;font-weight:bold}.level.active{background:#6254c8;color:white}.level.done{background:#e6faef;color:#16815b;border-color:#b9ecd4}.level span{display:block;font-size:24px}.progress{height:10px;background:#eceafa;border-radius:20px;margin:13px 0;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,#8c79f1,#38c79b);transition:.3s}.game{display:grid;grid-template-columns:1fr 1fr;gap:14px}.questions{display:grid;gap:9px}.question{display:flex;gap:10px;align-items:center;border:2px solid #e8e6f6;border-radius:15px;padding:10px}.question.solved{background:#eafff4;border-color:#a7e6c7}.emoji{font-size:38px;width:52px;text-align:center}.qbody{flex:1;min-width:0}.desc{font-size:12px;color:#6b758b;margin:5px 0}.answer{width:100%;padding:9px;border:2px solid #dedaf6;border-radius:10px;text-align:center;font-size:18px;font-family:Tahoma;background:#fbfaff}.answer:disabled{background:#e5f8ed;color:#16815b;font-weight:bold}.boardwrap{background:#f6f4ff;border-radius:16px;padding:12px;overflow:auto}.board{display:grid;gap:3px;width:max-content;margin:auto}.cell{width:clamp(30px,6.5vw,44px);height:clamp(30px,6.5vw,44px);border:2px solid #d8d3f4;background:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:clamp(16px,4vw,23px);font-weight:bold;color:#5548b6}.cell.done{background:#e5f9ee;border-color:#9cdec0;color:#16815b}.cell.block{background:#dce0ed;border-color:#dce0ed}.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:13px 0}.btn{padding:11px 15px;border-radius:12px;font-weight:bold;font-family:Tahoma;font-size:14px;border:0;cursor:pointer}.primary{background:#6254c8;color:white}.secondary{background:#eeecff;color:#6254c8}.warm{background:#fff1c9;color:#8b6500}.neutral{background:#edf0f7;color:#536079}#msg{text-align:center;min-height:28px;color:#16815b;font-weight:bold}.help{display:none;background:#fff8e6;color:#815d00;padding:11px;border-radius:12px;margin:10px 0;line-height:1.8}.badges{display:flex;flex-wrap:wrap;gap:8px}.badge{padding:10px;border-radius:12px;background:#f0eeff;color:#77709d;font-size:13px}.badge.on{background:#fff1c9;color:#8b6500}footer{text-align:center;color:#8991a5;font-size:12px;padding:14px}.modal{display:none;position:fixed;inset:0;background:#18204499;align-items:center;justify-content:center;padding:16px}.modal.show{display:flex}.modal article{background:white;border-radius:22px;padding:24px;text-align:center;max-width:400px}.modal .big{font-size:60px}@media(max-width:680px){.game{grid-template-columns:1fr}.levels{grid-template-columns:repeat(2,1fr)}.panel{padding:12px}}
+</style></head><body><main>
+<header class="hero"><div class="emoji">🧩 🐰 🌈</div><h1>ماجراجویی جدول کلمات</h1><p>بخوان، فکر کن، کلمه‌ها را پیدا کن و ستاره جمع کن!</p></header>
+<section class="panel"><div class="flex"><div><b style="font-size:19px">🎒 مسیر ماجراجویی</b><p style="margin:5px 0;color:#6b758b;font-size:13px">مرحله‌ها را یکی‌یکی کامل کن.</p></div><div class="flex"><span class="stat">⭐ امتیاز <b id="score">۰</b></span><span class="stat p">💡 راهنما <b id="hints">۳</b></span><span class="stat g">🏆 رکورد <b id="record">۰</b></span></div></div><div class="progress"><div id="totalbar"></div></div><div id="levels" class="levels"></div></section>
+<section class="panel"><div class="flex"><div><b id="stageTitle" style="font-size:21px;color:#6254c8"></b><p id="stageDesc" style="font-size:13px;color:#6b758b"></p></div><span class="stat p" id="count">۰ از ۵</span></div><div class="progress"><div id="stagebar"></div></div>
+<div class="game"><div><h3>🖼️ راهنمای تصویری</h3><div id="questions" class="questions"></div></div><div><h3>🔤 جدول پاسخ‌ها</h3><div class="boardwrap"><div id="board" class="board"></div></div><p style="font-size:12px;color:#7c8498;text-align:center">خانه‌های سبز یعنی کلمه درست پیدا شده است.</p><div id="help" class="help"></div><div id="msg">یک تصویر را انتخاب کن و جوابش را بنویس. 😊</div><div class="actions"><button class="btn primary" id="check">بررسی جواب‌ها ✓</button><button class="btn warm" id="hint">راهنمایی 💡</button><button class="btn secondary" id="speak">خواندن راهنما 🔊</button><button class="btn neutral" id="reset">شروع دوباره 🔄</button></div></div></div></section>
+<section class="panel"><h3>🎖️ نشان‌های افتخار</h3><div id="badges" class="badges"></div></section><footer>وب‌اپلیکیشن آموزشی فارسی • مناسب کلاس اول • قابل اجرا به صورت آفلاین</footer></main>
+<div id="modal" class="modal"><article><div class="big">🎉🏆🎉</div><h2>آفرین قهرمان!</h2><p id="modaltext">این مرحله را کامل کردی.</p><button class="btn primary" id="next">مرحله‌ی بعد 🚀</button><button class="btn secondary" id="close">بستن</button></article></div>
 <script>
-(()=>{
-const data=[
- {emoji:"🐱",clue:"این حیوان میو میو می‌کند.",answer:"گربه",hint:"با «گ» شروع می‌شود."},
- {emoji:"🍎",clue:"یک میوه‌ی قرمز یا سبز.",answer:"سیب",hint:"سه حرف دارد و با «س» شروع می‌شود."},
- {emoji:"🌙",clue:"شب‌ها در آسمان دیده می‌شود.",answer:"ماه",hint:"با «م» شروع می‌شود."},
- {emoji:"🐟",clue:"در آب زندگی می‌کند.",answer:"ماهی",hint:"با «م» شروع می‌شود و چهار حرف دارد."},
- {emoji:"🏠",clue:"جایی که در آن زندگی می‌کنیم.",answer:"خانه",hint:"با «خ» شروع می‌شود."}
-];
-const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
-const clean=s=>s.trim().replace(/ي/g,"ی").replace(/ك/g,"ک").replace(/\u200c/g,"").replace(/\s/g,"");
-let solved=new Set(),hintIndex=0;
-const clues=document.getElementById('clues'),board=document.getElementById('board');
-function render(){
- clues.innerHTML='';
- data.forEach((w,i)=>{
-  const el=document.createElement('div');el.className='clue';
-  el.innerHTML=`<div class="pic">${w.emoji}</div><div style="flex:1;min-width:0"><strong>کلمه ${fa(i+1)}</strong><small>${w.clue}</small><input id="a${i}" aria-label="پاسخ کلمه ${i+1}" placeholder="اینجا بنویس..." autocomplete="off" ${solved.has(i)?'disabled':''} /></div>`;
-  if(solved.has(i))el.querySelector('input').value=w.answer;
-  clues.appendChild(el);
- });
- board.innerHTML='';
- data.forEach((w,i)=>{
-  [...w.answer].forEach((ch,j)=>{
-   const c=document.createElement('div');c.className='cell'+(solved.has(i)?' filled':'');c.textContent=solved.has(i)?ch:'؟';board.appendChild(c);
-  });
- });
- document.getElementById('score').textContent=`⭐ ${fa(solved.size)} از ۵`;
- document.getElementById('bar').style.width=(solved.size/5*100)+'%';
+(()=>{const stages=[
+{name:"حیوانات",desc:"حیوانات دوست‌داشتنی را بشناس.",words:[["🐱","گربه","میو میو می‌کند."],["🐶","سگ","نگهبان خانه است."],["🐟","ماهی","در آب شنا می‌کند."],["🐄","گاو","شیر می‌دهد."],["🐰","خرگوش","گوش‌های بلند دارد."]]},
+{name:"خانه و خانواده",desc:"چیزهایی که در خانه می‌بینی.",words:[["🏠","خانه","جایی که زندگی می‌کنیم."],["🚪","در","از آن وارد اتاق می‌شویم."],["🪑","صندلی","روی آن می‌نشینیم."],["🧹","جارو","با آن زمین را تمیز می‌کنیم."],["🛏️","تخت","روی آن می‌خوابیم."]]},
+{name:"میوه و خوراکی",desc:"نام خوراکی‌های خوشمزه را پیدا کن.",words:[["🍎","سیب","میوه‌ای قرمز یا سبز."],["🍌","موز","میوه‌ای زرد و کشیده."],["🍇","انگور","دانه‌های کوچکش کنار هم هستند."],["🥛","شیر","نوشیدنی سفید و مفید."],["🍞","نان","آن را برای صبحانه می‌خوریم."]]},
+{name:"طبیعت و آسمان",desc:"به آسمان و طبیعت نگاه کن.",words:[["☀️","خورشید","روزها می‌تابد."],["🌙","ماه","شب در آسمان دیده می‌شود."],["🌳","درخت","شاخه و برگ دارد."],["🌧️","باران","از ابر می‌بارد."],["🌹","گل","زیبا و خوش‌بوست."]]},
+{name:"مدرسه",desc:"وسایل مدرسه را به یاد بیاور.",words:[["📘","کتاب","آن را می‌خوانیم."],["✏️","مداد","با آن می‌نویسیم."],["🎒","کیف","وسایل مدرسه در آن است."],["📏","خط کش","برای کشیدن خط صاف."],["🖍️","رنگ","با آن نقاشی می‌کنیم."]]},
+{name:"بدن و حواس",desc:"مرحله‌ی پایانی؛ کمی بیشتر فکر کن!",words:[["👁️","چشم","با آن می‌بینیم."],["👂","گوش","با آن می‌شنویم."],["👃","بینی","با آن بو می‌کنیم."],["👄","دهان","با آن حرف می‌زنیم."],["🦷","دندان","با آن غذا را می‌جویم."]]}
+];let stage=0,score=0,hints=3,record=0,solved=new Set(),usedHint=new Set();const $=id=>document.getElementById(id);const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);const norm=s=>s.trim().replace(/ي/g,"ی").replace(/ك/g,"ک").replace(/\u200c/g,"").replace(/\s/g,"");
+function render(){let st=stages[stage];$("stageTitle").textContent="مرحله "+fa(stage+1)+": "+st.name;$("stageDesc").textContent=st.desc;$("levels").innerHTML="";stages.forEach((s,i)=>{let b=document.createElement("button");b.className="level"+(i===stage?" active":"")+(i<stage?" done":"");b.innerHTML=`<span>${i<stage?"✅":["🐾","🏡","🍎","🌤️","🎒","🧠"][i]}</span>مرحله ${fa(i+1)}<br><small>${s.name}</small>`;b.onclick=()=>{stage=i;solved.clear();usedHint.clear();$("help").style.display="none";render();$("msg").textContent="مرحله‌ی جدید! شروع کن. 🌟"};$("levels").appendChild(b)});
+$("questions").innerHTML="";st.words.forEach((w,i)=>{let q=document.createElement("div");q.className="question"+(solved.has(i)?" solved":"");q.innerHTML=`<div class="emoji">${w[0]}</div><div class="qbody"><b>کلمه ${fa(i+1)}</b><div class="desc">${w[2]}</div><input class="answer" id="a${i}" placeholder="جواب را بنویس..." autocomplete="off" ${solved.has(i)?"disabled":""}><small style="color:#16815b">${solved.has(i)?"آفرین! ⭐":""}</small></div>`;let input=q.querySelector("input");if(solved.has(i))input.value=w[1];input.onkeydown=e=>{if(e.key==="Enter")check()};$("questions").appendChild(q)});
+$("board").innerHTML="";let max=Math.max(...st.words.map(w=>[...w[1]].length));$("board").style.gridTemplateColumns=`repeat(${max},auto)`;st.words.forEach((w,i)=>{let chars=[...w[1]];for(let j=0;j<max;j++){let c=document.createElement("div");c.className="cell"+(j>=chars.length?" block":solved.has(i)?" done":"");c.textContent=j>=chars.length?"":solved.has(i)?chars[j]:"";$("board").appendChild(c)}});
+$("score").textContent=fa(score);$("hints").textContent=fa(hints);$("record").textContent=fa(record);$("count").textContent=fa(solved.size)+" از ۵";$("stagebar").style.width=solved.size*20+"%";$("totalbar").style.width=((stage*5+solved.size)/(stages.length*5)*100)+"%";
+$("badges").innerHTML="";[["⭐ اولین ستاره",score>=1],["🐾 تکمیل یک مرحله",stage>0||solved.size===5],["🌈 سه مرحله",stage>=3],["🏆 قهرمان",stage===5&&solved.size===5]].forEach(x=>{let d=document.createElement("div");d.className="badge"+(x[1]?" on":"");d.textContent=(x[1]?"🏅 ":"🔒 ")+x[0];$("badges").appendChild(d)});
 }
-function check(){
- let newly=0;
- data.forEach((w,i)=>{
-  const input=document.getElementById('a'+i);
-  if(input && clean(input.value)===w.answer && !solved.has(i)){solved.add(i);newly++;}
- });
- render();
- const msg=document.getElementById('message');
- if(solved.size===data.length)msg.textContent='آفرین قهرمان! همه‌ی کلمه‌ها را پیدا کردی! 🏆🎉';
- else if(newly)msg.textContent=`آفرین! ${fa(newly)} جواب درست پیدا کردی. ادامه بده! ⭐`;
- else msg.textContent='هنوز درست نشده؛ دوباره تلاش کن. تو می‌توانی! 💪';
-}
-document.getElementById('check').onclick=check;
-document.getElementById('hint').onclick=()=>{
- const i=data.findIndex((w,i)=>!solved.has(i));
- if(i<0){document.getElementById('message').textContent='همه‌ی کلمه‌ها حل شده‌اند! آفرین!';return;}
- document.getElementById('message').textContent='💡 راهنمایی: '+data[i].hint;
- const input=document.getElementById('a'+i);if(input)input.focus();
-};
-document.getElementById('reset').onclick=()=>{solved.clear();render();document.getElementById('message').textContent='بازی از نو شروع شد. موفق باشی! 😊';};
-render();
+function check(){let got=0;stages[stage].words.forEach((w,i)=>{let input=$("a"+i);if(input&&!solved.has(i)&&norm(input.value)===norm(w[1])){solved.add(i);score+=usedHint.has(i)?5:10;got++}});record=Math.max(record,score);render();if(solved.size===5){$("msg").textContent="همه‌ی جواب‌ها درست‌اند! فوق‌العاده‌ای! 🎉";$("modaltext").textContent="مرحله‌ی «"+stages[stage].name+"» را کامل کردی!";$("next").style.display=stage===stages.length-1?"none":"inline-block";$("modal").classList.add("show")}else $("msg").textContent=got?"آفرین! "+fa(got)+" کلمه‌ی درست پیدا کردی. ⭐":"هنوز جواب درست نشده. دوباره تلاش کن! 😊"}
+$("check").onclick=check;$("hint").onclick=()=>{if(hints<=0){$("help").style.display="block";$("help").textContent="راهنماها تمام شدند. تلاش کن خودت جواب را پیدا کنی.";return}let i=stages[stage].words.findIndex((w,i)=>!solved.has(i));if(i<0)return;hints--;usedHint.add(i);let word=stages[stage].words[i][1];$("help").style.display="block";$("help").textContent="💡 راهنمایی کلمه‌ی "+fa(i+1)+": با حرف «"+[...word][0]+"» شروع می‌شود و "+fa([...word].length)+" حرف دارد.";render();$("a"+i)?.focus()};
+$("speak").onclick=()=>{let i=stages[stage].words.findIndex((w,i)=>!solved.has(i));let text=i<0?stages[stage].desc:stages[stage].words[i][2];if("speechSynthesis"in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(text);u.lang="fa-IR";u.rate=.8;speechSynthesis.speak(u)}else $("msg").textContent="خواندن صوتی در این مرورگر پشتیبانی نمی‌شود."};
+$("reset").onclick=()=>{solved.clear();usedHint.clear();$("help").style.display="none";render();$("msg").textContent="مرحله از نو شروع شد. موفق باشی! 😊"};$("next").onclick=()=>{if(stage<stages.length-1){stage++;solved.clear();usedHint.clear();$("modal").classList.remove("show");$("help").style.display="none";render();$("msg").textContent="به مرحله‌ی بعد خوش آمدی! 🚀"}};$("close").onclick=()=>$("modal").classList.remove("show");render();
 })();
-</script>
-</body></html>
+</script></body></html>
